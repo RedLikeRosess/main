@@ -1,4 +1,3 @@
-# Oleg krasauchik
 import socket; import select; import sys;
 
 client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
