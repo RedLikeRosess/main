@@ -7,7 +7,7 @@ public class Process {
     
     private Gamer actualPlayer;
 
-    private Gamer[][] table;
+    public Gamer[][] table;
 
     public Process(int sizeX, int sizeY) {
         this.sizeX = sizeX;
@@ -22,8 +22,22 @@ public class Process {
         }
     }
 
-    public Gamer step(int row, int column) {
-        if (table[row][column] != Gamer.NOBODY) {
+    public void step(int row, int column) {
+        for (int i = sizeX-1; i > 0; i--){
+            System.out.println("row: " + i + " col: " + column);
+                if (table[i][column] == Gamer.NOBODY) {
+                    table[i][column] = actualPlayer;
+                    System.out.println(actualPlayer);
+                    if (actualPlayer == Gamer.X) {
+                    actualPlayer = Gamer.O;
+                    } else {
+                    actualPlayer = Gamer.X;
+                    }
+                    break;
+                }                           
+        }
+        
+        /*if (table[row][column] != Gamer.NOBODY) {
             return table[row][column];
         }
 
@@ -35,7 +49,7 @@ public class Process {
             actualPlayer = Gamer.X;
         }
 
-        return table[row][column];
+        return table[row][column];*/
     }
 
     public Gamer findWinner() {

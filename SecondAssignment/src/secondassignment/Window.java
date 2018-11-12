@@ -1,7 +1,6 @@
 package secondassignment;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -29,16 +28,16 @@ public class Window extends PopupWindows{
         
         JButton newGameButton = new JButton();
         newGameButton.setText("New game");
-        newGameButton.addActionListener(e -> newGame());   //newGame
+        newGameButton.addActionListener(e -> newGame());
         
         top.add(label);
         top.add(newGameButton);
         
-        JPanel controlPanel = new JPanel();
+        /*JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new GridLayout(1, sizeY));
         for (int j = 0; j < sizeY; ++j) {
             addControlButton(controlPanel, 1, j);
-        }        
+        }   */     
         
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(sizeX, sizeY));
@@ -50,7 +49,7 @@ public class Window extends PopupWindows{
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(top, BorderLayout.SOUTH);
-        getContentPane().add(controlPanel, BorderLayout.NORTH);
+        //getContentPane().add(controlPanel, BorderLayout.NORTH);
         getContentPane().add(mainPanel, BorderLayout.CENTER);
     }
     
@@ -58,41 +57,53 @@ public class Window extends PopupWindows{
         final JButton button = new JButton();
         for (int s = 0; s <= j; s++){
             button.setText(""+(s+1));
+            System.out.println("Column: "+(s+1));
         }
-        /*button.addActionListener(e -> {                       // -> ????
-            Gamer newValue = process.step(i, j);
-            button.setText(newValue.name());
-            
-            updateLabelText();
-            
-            Gamer winner = process.findWinner();
-            if (winner != Gamer.NOBODY) {
-                showGameOverMessage(winner);
-            }
-        });*/
         panel.add(button);
+         
     }
     
     private void addButton(JPanel panel, final int i, final int j) {
         final JButton button = new JButton();
-
-        /*button.addActionListener(e -> {
-            Gamer newValue = process.step(i, j);
-            button.setText(newValue.name());
+        if (i == 0){
+            button.setText(""+(j+1));
+            System.out.println("Column: "+(j+1) + " " + i);
+            button.addActionListener(e -> {
+            process.step(i, j);
+            refreshButton(panel, button, i, j);
             
-            s();
+            updateLabelText();
             
-            Gamer winner = process.findWinner();
+            /*Gamer winner = process.findWinner();
             if (winner != Gamer.NOBODY) {
                 showGameOverMessage(winner);
-            }
-        });*/
+            }*/
+            });
+        }
         panel.add(button);
     }
-
+    
+    private void refreshButton(JPanel panel, JButton button, final int i, final int j) {
+        //final JButton button = new JButton();
+        /*
+        button.setText(process.getActualPlayer().name());
+        panel.add(button);*/
+        if(process.table[i][j]==Gamer.O){
+            button.setText("O");
+        }
+        if(process.table[i][j]==Gamer.X){
+            button.setText("X");
+        }
+        //panel.add(button);
+    }
+    
     private void showGameOverMessage(Gamer winner) {
-        JOptionPane.showMessageDialog(this,
-                "Game is over. Winner: " + winner.name());
+        JOptionPane.showMessageDialog(this,"Game is over. Winner: " + winner.name());
+        newGame();
+    }
+    
+    private void showGameOverMessageDraw() {
+        JOptionPane.showMessageDialog(this,"Game is over. It's a draw.");
         newGame();
     }
     
@@ -105,8 +116,7 @@ public class Window extends PopupWindows{
     }
     
     private void updateLabelText() {
-        label.setText("Current player: "
-                + process.getActualPlayer().name());
+        label.setText("Current player: " + process.getActualPlayer().name());
     }
 
     @Override

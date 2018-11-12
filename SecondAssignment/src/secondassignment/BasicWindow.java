@@ -7,25 +7,25 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
-public class BasicWindow extends PopupWindows{    // extends???
+public class BasicWindow extends PopupWindows{    
     
-    private List<Window> gameWindows = new ArrayList<>();  // arrayList???
+    private List<Window> gameWindows = new ArrayList<>(); 
     
     public BasicWindow() {
         
         JButton small = new JButton();
         small.setText("8 x 5");
-        small.addActionListener(getActionListener(5, 8));  // actionListener???
+        small.addActionListener(getActionListener(6, 8)); 
         
         JButton medium = new JButton();
         medium.setText("10 x 6");
-        medium.addActionListener(getActionListener(6, 10));
+        medium.addActionListener(getActionListener(7, 10));
 
         JButton large = new JButton();
         large.setText("12 x 7");
-        large.addActionListener(getActionListener(7, 12));
+        large.addActionListener(getActionListener(8, 12));
         
-        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));    //boxLayout ???
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));  
         getContentPane().add(small);    //getContentPane???
         getContentPane().add(medium);
         getContentPane().add(large);
@@ -48,7 +48,7 @@ public class BasicWindow extends PopupWindows{    // extends???
     }
     
     @Override
-    protected void doUponExit() {     //doUponExit???
+    protected void doUponExit() {   
         System.exit(0);
     }
 }
