@@ -24,10 +24,10 @@ public class Process {
 
     public void step(int row, int column) {
         for (int i = sizeX-1; i > 0; i--){
-            System.out.println("row: " + i + " col: " + column);
                 if (table[i][column] == Gamer.NOBODY) {
                     table[i][column] = actualPlayer;
-                    System.out.println(actualPlayer);
+                    for (int c = sizeX-1; c > 0; c-- ){
+                    }
                     if (actualPlayer == Gamer.X) {
                     actualPlayer = Gamer.O;
                     } else {
@@ -36,68 +36,123 @@ public class Process {
                     break;
                 }                           
         }
-        
-        /*if (table[row][column] != Gamer.NOBODY) {
-            return table[row][column];
-        }
-
-        table[row][column] = actualPlayer;
-
-        if (actualPlayer == Gamer.X) {
-            actualPlayer = Gamer.O;
-        } else {
-            actualPlayer = Gamer.X;
-        }
-
-        return table[row][column];*/
     }
 
     public Gamer findWinner() {
-        for (int i = 0; i < sizeX; ++i) {
-            if (table[0][i] != Gamer.NOBODY) {
-                boolean ok = true;
-                for (int j = 1; ok && j < sizeY; ++j) {
-                    ok = ok && table[j][i] == table[0][i];
+        //Horizontal
+        int cntHX = 0;
+        int cntHO = 0;
+        for (int i = sizeX-1; i > 0; i--){
+            for (int j = sizeY-1; j > 0; j--){
+                if (table[i][j] == Gamer.X && table[i][j] == table[i][j-1]){
+                    cntHX++;
+                    if(cntHX == 3){
+                        return Gamer.X;
+                    }
                 }
-                if (ok) {
-                    return table[0][i];
+                else{
+                    cntHX = 0;
+                }
+                if (table[i][j] == Gamer.O && table[i][j] == table[i][j-1]){
+                    cntHO++;
+                    if(cntHO == 3){
+                        return Gamer.O;
+                    }
+                }
+                else{
+                    cntHO = 0;
                 }
             }
         }
-        for (int i = 0; i < sizeX; ++i) {
-            if (table[i][0] != Gamer.NOBODY) {
-                boolean ok = true;
-                for (int j = 1; ok && j < sizeY; ++j) {
-                    ok = ok && table[i][j] == table[i][0];
+        
+        //Vertical
+        int cntVX = 0;
+        int cntVO = 0;
+        for (int j = sizeY-1; j >= 0; j--){
+            for (int i = sizeX-1; i > 0; i--){            
+                if (table[i][j] == Gamer.X && table[i][j] == table[i-1][j]){
+                    cntVX++;
+                    if(cntVX == 3){
+                        return Gamer.X;
+                    }
                 }
-                if (ok) {
-                    return table[i][0];
+                else{
+                    cntVX = 0;
+                }
+                if (table[i][j] == Gamer.O && table[i][j] == table[i-1][j]){
+                    cntVO++;
+                    if(cntVO == 3){
+                        return Gamer.O;
+                    }
+                }
+                else{
+                    cntVO = 0;
                 }
             }
         }
-        if (table[0][0] != Gamer.NOBODY) {
-            boolean ok = true;
-            for (int j = 1; ok && j < sizeY; ++j) {
-                ok = ok && table[j][j] == table[0][0];
-            }
-            if (ok) {
-                return table[0][0];
+        //Diagonal
+        /*100
+          010
+          001*/
+        int cntDX = 0;
+        int cntDO = 0;
+        for (int i = sizeX-4; i > 0; i--){ 
+            for (int j = sizeY-4; j >= 0; j--){
+                if (table[i][j] == Gamer.X && table[i][j] == table[i+1][j+1] && table[i][j] == table[i+2][j+2] && table[i][j] == table[i+3][j+3]){
+                    cntDX++;
+                    System.out.println(cntDX);
+                    if(cntDX == 1){
+                        return Gamer.X;
+                    }
+                }
+                else{
+                    cntDX = 0;
+                }
+                if (table[i][j] == Gamer.O && table[i][j] == table[i+1][j+1] && table[i][j] == table[i+2][j+2] && table[i][j] == table[i+3][j+3]){
+                    cntDO++;
+                    if(cntDO == 1){
+                        return Gamer.O;
+                    }
+                }
+                else{
+                    cntDO = 0;
+                }
             }
         }
-        if (table[0][sizeY - 1] != Gamer.NOBODY) {
-            boolean ok = true;
-            for (int j = 1; ok && j < sizeY; ++j) {
-                ok = ok && table[j][sizeY - 1 - j] == table[0][sizeY - 1];
-            }
-            if (ok) {
-                return table[0][sizeY - 1];
+        /*001
+          010
+          100*/
+        for (int i = sizeX-4; i > 0; i--){ 
+            for (int j = sizeY-1; j >= 3; j--){
+                if (table[i][j] == Gamer.X && table[i][j] == table[i+1][j-1] && table[i][j] == table[i+2][j-2] && table[i][j] == table[i+3][j-3]){
+                    cntDX++;
+                    System.out.println(cntDX);
+                    if(cntDX == 1){
+                        return Gamer.X;
+                    }
+                }
+                else{
+                    cntDX = 0;
+                }
+                if (table[i][j] == Gamer.O && table[i][j] == table[i+1][j-1] && table[i][j] == table[i+2][j-2] && table[i][j] == table[i+3][j-3]){
+                    cntDO++;
+                    if(cntDO == 1){
+                        return Gamer.O;
+                    }
+                }
+                else{
+                    cntDO = 0;
+                }
             }
         }
-
-        return Gamer.NOBODY;
+        return Gamer.NOBODY;        
     }
 
     public Gamer getActualPlayer() {
         return actualPlayer;
+    }
+    
+    public int getRows() {
+        return sizeX-1;
     }
 }

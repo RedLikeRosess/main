@@ -12,7 +12,7 @@ public class PopupWindows extends JFrame{
     
     public PopupWindows() {
         setTitle("Connect Four");
-        setSize(800, 500);
+        setSize(1000, 500);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
 

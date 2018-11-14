@@ -1,6 +1,7 @@
 package secondassignment;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,9 +11,12 @@ import javax.swing.JPanel;
 public class Window extends PopupWindows{
     private final int sizeX;
     private final int sizeY;
+    private int cnt;
     private final Process process;
     private final JLabel label;
     private final BasicWindow basicWindow;
+    JButton[][] buttons;
+    
     
     public Window(int sizeX, int sizeY, BasicWindow basicWindow) {
         this.sizeX = sizeX;
@@ -23,6 +27,8 @@ public class Window extends PopupWindows{
 
         JPanel top = new JPanel();
         
+        buttons = new JButton[sizeX][sizeY];
+        cnt = 0;
         label = new JLabel();
         updateLabelText();
         
@@ -31,13 +37,7 @@ public class Window extends PopupWindows{
         newGameButton.addActionListener(e -> newGame());
         
         top.add(label);
-        top.add(newGameButton);
-        
-        /*JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new GridLayout(1, sizeY));
-        for (int j = 0; j < sizeY; ++j) {
-            addControlButton(controlPanel, 1, j);
-        }   */     
+        top.add(newGameButton);    
         
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(sizeX, sizeY));
@@ -46,10 +46,9 @@ public class Window extends PopupWindows{
                 addButton(mainPanel, i, j);
             }
         }
-
+        
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(top, BorderLayout.SOUTH);
-        //getContentPane().add(controlPanel, BorderLayout.NORTH);
         getContentPane().add(mainPanel, BorderLayout.CENTER);
     }
     
@@ -59,42 +58,55 @@ public class Window extends PopupWindows{
             button.setText(""+(s+1));
             System.out.println("Column: "+(s+1));
         }
-        panel.add(button);
-         
+        panel.add(button);         
     }
     
     private void addButton(JPanel panel, final int i, final int j) {
         final JButton button = new JButton();
+        buttons[i][j] = button;
+        if (i == 0 && j == 0){ button.setText("Push me"); }
+        if (i == 0 && j == 1){ button.setText("And then"); }
+        if (i == 0 && j == 2){ button.setText("just touch me"); }
+        if (i == 0 && j == 3){ button.setText("Till I can"); }
+        if (i == 0 && j == 4){ button.setText("get my"); }
+        if (i == 0 && j == 5){ button.setText("Satisfaction"); }
+        if (i == 0 && j == 6){ button.setText("Satisfaction"); }
+        if (i == 0 && j == 7){ button.setText("Satisfaction"); }
         if (i == 0){
-            button.setText(""+(j+1));
-            System.out.println("Column: "+(j+1) + " " + i);
+            //button.setText(""+(j+1));
+            //button.setText("Push me!");
             button.addActionListener(e -> {
             process.step(i, j);
-            refreshButton(panel, button, i, j);
+            
+            for (int r = process.getRows(); r > 0; r--){
+                refreshButton(buttons[r][j], r, j);
+            }
             
             updateLabelText();
-            
-            /*Gamer winner = process.findWinner();
+            boolean win = false;
+            Gamer winner = process.findWinner();
             if (winner != Gamer.NOBODY) {
                 showGameOverMessage(winner);
-            }*/
+                win = true;
+            }
+            cnt++;
+            if (cnt == ((sizeX-1)*(sizeY)) && win == false){
+                showGameOverMessageDraw();
+            }
             });
         }
         panel.add(button);
     }
     
-    private void refreshButton(JPanel panel, JButton button, final int i, final int j) {
-        //final JButton button = new JButton();
-        /*
-        button.setText(process.getActualPlayer().name());
-        panel.add(button);*/
-        if(process.table[i][j]==Gamer.O){
+    private void refreshButton(JButton button,int r ,int j) {
+        if(process.table[r][j]==Gamer.O){
             button.setText("O");
+            button.setBackground(Color.orange);
         }
-        if(process.table[i][j]==Gamer.X){
+        if(process.table[r][j]==Gamer.X){
             button.setText("X");
+            button.setBackground(Color.PINK);
         }
-        //panel.add(button);
     }
     
     private void showGameOverMessage(Gamer winner) {

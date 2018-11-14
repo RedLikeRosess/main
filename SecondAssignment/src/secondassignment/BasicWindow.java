@@ -15,15 +15,15 @@ public class BasicWindow extends PopupWindows{
         
         JButton small = new JButton();
         small.setText("8 x 5");
-        small.addActionListener(getActionListener(6, 8)); 
+        small.addActionListener(getActionListener(8, 6)); 
         
         JButton medium = new JButton();
         medium.setText("10 x 6");
-        medium.addActionListener(getActionListener(7, 10));
+        medium.addActionListener(getActionListener(10, 7));
 
         JButton large = new JButton();
         large.setText("12 x 7");
-        large.addActionListener(getActionListener(8, 12));
+        large.addActionListener(getActionListener(12, 8));
         
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));  
         getContentPane().add(small);    //getContentPane???
@@ -36,7 +36,7 @@ public class BasicWindow extends PopupWindows{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Window window = new Window(sizeX, sizeY, BasicWindow.this);
+                Window window = new Window(sizeY, sizeX, BasicWindow.this);
                 window.setVisible(true);
                 gameWindows.add(window);
             }            
