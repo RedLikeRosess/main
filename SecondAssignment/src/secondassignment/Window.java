@@ -18,7 +18,7 @@ public class Window extends PopupWindows{
     private JButton[][] buttons;
     
     
-    public Window(int sizeX, int sizeY, BasicWindow basicWindow) {
+    public Window(int sizeX, int sizeY, BasicWindow basicWindow){
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.basicWindow = basicWindow;
@@ -69,11 +69,39 @@ public class Window extends PopupWindows{
         else{
             if(i == 0){
             button.setText(""+(j+1));
-            }
+            }   
         }
         if (i == 0){
             button.addActionListener(e -> {
             process.step(i, j);
+            if((sizeY-1) < 8){
+                switch(j){
+                    case 0:
+                        player.play(0);
+                        break;
+                    case 1:
+                        player.play(1);
+                        break;
+                    case 2:
+                        player.play(2);
+                        break;
+                    case 3:
+                        player.play(3);
+                        break;
+                    case 4:
+                        player.play(4);
+                        break;
+                    case 5:
+                        player.play(5);
+                        break;
+                    case 6:
+                        player.play(5);
+                        break;
+                    case 7:
+                        player.play(5);
+                        break;
+                }
+            }
             
             for (int r = process.getRows(); r > 0; r--){
                 refreshButton(buttons[r][j], r, j);
