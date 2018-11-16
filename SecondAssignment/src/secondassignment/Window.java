@@ -15,7 +15,7 @@ public class Window extends PopupWindows{
     private final Process process;
     private final JLabel label;
     private final BasicWindow basicWindow;
-    JButton[][] buttons;
+    private JButton[][] buttons;
     
     
     public Window(int sizeX, int sizeY, BasicWindow basicWindow) {
@@ -48,33 +48,30 @@ public class Window extends PopupWindows{
         }
         
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(top, BorderLayout.SOUTH);
+        getContentPane().add(top, BorderLayout.NORTH);
         getContentPane().add(mainPanel, BorderLayout.CENTER);
-    }
-    
-    private void addControlButton(JPanel panel, final int i, final int j) {
-        final JButton button = new JButton();
-        for (int s = 0; s <= j; s++){
-            button.setText(""+(s+1));
-            System.out.println("Column: "+(s+1));
-        }
-        panel.add(button);         
     }
     
     private void addButton(JPanel panel, final int i, final int j) {
         final JButton button = new JButton();
         buttons[i][j] = button;
-        if (i == 0 && j == 0){ button.setText("Push me"); }
-        if (i == 0 && j == 1){ button.setText("And then"); }
-        if (i == 0 && j == 2){ button.setText("just touch me"); }
-        if (i == 0 && j == 3){ button.setText("Till I can"); }
-        if (i == 0 && j == 4){ button.setText("get my"); }
-        if (i == 0 && j == 5){ button.setText("Satisfaction"); }
-        if (i == 0 && j == 6){ button.setText("Satisfaction"); }
-        if (i == 0 && j == 7){ button.setText("Satisfaction"); }
+        System.out.println(j);
+        if((sizeY-1) < 8){
+            if (i == 0 && j == 0){ button.setText("Push me"); }
+            if (i == 0 && j == 1){ button.setText("And then"); }
+            if (i == 0 && j == 2){ button.setText("just touch me"); }
+            if (i == 0 && j == 3){ button.setText("Till I can"); }
+            if (i == 0 && j == 4){ button.setText("get my"); }
+            if (i == 0 && j == 5){ button.setText("Satisfaction"); }
+            if (i == 0 && j == 6){ button.setText("Satisfaction"); }
+            if (i == 0 && j == 7){ button.setText("Satisfaction"); }
+        }
+        else{
+            if(i == 0){
+            button.setText(""+(j+1));
+            }
+        }
         if (i == 0){
-            //button.setText(""+(j+1));
-            //button.setText("Push me!");
             button.addActionListener(e -> {
             process.step(i, j);
             
@@ -101,11 +98,11 @@ public class Window extends PopupWindows{
     private void refreshButton(JButton button,int r ,int j) {
         if(process.table[r][j]==Gamer.O){
             button.setText("O");
-            button.setBackground(Color.orange);
+            button.setBackground(Color.RED);
         }
         if(process.table[r][j]==Gamer.X){
             button.setText("X");
-            button.setBackground(Color.PINK);
+            button.setBackground(Color.YELLOW);
         }
     }
     

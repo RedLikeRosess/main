@@ -12,7 +12,7 @@ public class PopupWindows extends JFrame{
     
     public PopupWindows() {
         setTitle("Connect Four");
-        setSize(1000, 500);
+        setSize(950, 500);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
 
@@ -22,8 +22,8 @@ public class PopupWindows extends JFrame{
             }
 
         });
-        //URL url = Window.class.getResource("icon.png");
-        //setIconImage(Toolkit.getDefaultToolkit().getImage(url));
+        URL url = Window.class.getResource("icon.png");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(url));
 
     }
     
