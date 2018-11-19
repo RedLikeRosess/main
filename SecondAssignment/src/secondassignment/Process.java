@@ -5,14 +5,14 @@ public class Process {
     private int sizeX;
     private int sizeY;
     
-    private Gamer actualPlayer;
+    private Gamer actualGamer;
 
     public Gamer[][] table;
 
     public Process(int sizeX, int sizeY) {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        actualPlayer = Gamer.X;
+        actualGamer = Gamer.X;
 
         table = new Gamer[sizeX][sizeY];
         for (int i = 0; i < sizeX; ++i) {
@@ -25,13 +25,13 @@ public class Process {
     public void step(int row, int column) {
         for (int i = sizeX-1; i > 0; i--){
                 if (table[i][column] == Gamer.NOBODY) {
-                    table[i][column] = actualPlayer;
+                    table[i][column] = actualGamer;
                     for (int c = sizeX-1; c > 0; c-- ){
                     }
-                    if (actualPlayer == Gamer.X) {
-                    actualPlayer = Gamer.O;
+                    if (actualGamer == Gamer.X) {
+                    actualGamer = Gamer.O;
                     } else {
-                    actualPlayer = Gamer.X;
+                    actualGamer = Gamer.X;
                     }
                     break;
                 }                           
@@ -148,8 +148,8 @@ public class Process {
         return Gamer.NOBODY;        
     }
 
-    public Gamer getActualPlayer() {
-        return actualPlayer;
+    public Gamer getActualGamer() {
+        return actualGamer;
     }
     
     public int getRows() {

@@ -1,5 +1,5 @@
 package secondassignment;
 
-public enum Gamer {   // enum ????
+public enum Gamer {
     X, O, NOBODY
 }

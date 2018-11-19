@@ -1,6 +1,5 @@
 package secondassignment;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
@@ -16,11 +15,10 @@ import javax.swing.border.LineBorder;
 public class BasicWindow extends PopupWindows{    
     
     private List<Window> gameWindows = new ArrayList<>();
-    static JLabel text;
     
     public BasicWindow() {
         Border bd = new LineBorder(Color.BLUE, 1);
-        text = new JLabel("                     Choose your destiny!!!");
+        JLabel text = new JLabel("                     Choose your destiny!!!");
         text.setPreferredSize(new Dimension(250, 40));
         text.setMaximumSize(new Dimension(250, 40));
         

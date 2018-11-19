@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-class player {
+public class player {
     
     public static void player(String args[]){        
     }

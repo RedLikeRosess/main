@@ -55,7 +55,6 @@ public class Window extends PopupWindows{
     private void addButton(JPanel panel, final int i, final int j) {
         final JButton button = new JButton();
         buttons[i][j] = button;
-        System.out.println(j);
         if((sizeY-1) < 8){
             if (i == 0 && j == 0){ button.setText("Push me"); }
             if (i == 0 && j == 1){ button.setText("And then"); }
@@ -108,6 +107,7 @@ public class Window extends PopupWindows{
             }
             
             updateLabelText();
+            
             boolean win = false;
             Gamer winner = process.findWinner();
             if (winner != Gamer.NOBODY) {
@@ -153,7 +153,7 @@ public class Window extends PopupWindows{
     }
     
     private void updateLabelText() {
-        label.setText("Current player: " + process.getActualPlayer().name());
+        label.setText("Current player: " + process.getActualGamer().name());
     }
 
     @Override
