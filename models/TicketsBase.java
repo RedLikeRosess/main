@@ -11,5 +11,9 @@ public class TicketsBase{
 	
 	public void addTicket(GoldenTicket t){
 		gt.add(t);
+	}
+        
+    public ArrayList<GoldenTicket> getGoldenTickets(){
+		return this.gt;
 	}	
 }
