@@ -8,7 +8,10 @@ public class Main{
 		Controller c = new Controller();
 		Scanner sc = new Scanner(System.in);
 		do{
-			System.out.println("Select from list: \n 1 - Register prize ticket \n 2 - Show all prize tickets \n 3 - Create a new Oompa Loompa song \n 0- exit" );
+			System.out.println("Select from list: \n 1 - Register prize ticket \n 2 - Show all prize tickets" +  
+				"\n 3 - list raffled tickets \n 4 - Create a new Oompa Loompa song" + 
+				"\n 5 - Register beings \n 6 - Register products \n 7 - Raffle tickets" +
+				"\n 8 - Register sale \n 9 - List winners \n 0 - exit");
 			option = sc.nextInt();			
 			try{
 				switch(option){
@@ -19,10 +22,27 @@ public class Main{
                         c.listGoldenTickets();
                         break;
 					case 3:
-                        System.out.println("Write a number of lines for song: ");
-						numOfLines = sc.nextInt();
-						c.getSong(numOfLines);
-                        break;				
+                        //c.listRaffledTickets();
+                        break;
+                    case 4:
+						c.getSong();
+                    	break;
+                    case 5:
+                    	c.createBeing();
+                    	break;
+                    case 6:
+                    	c.getKids();
+                    	//c.createProduct();
+                    	break;
+                    case 7:
+                    	//c.raffleTickets();
+                    	break;
+                    case 8:
+                    	//c.createSale();
+                    	break;
+                    case 9:
+                    	//c.listWinners();
+                    	break;				
 					case 0:				
                         break;
 					default:

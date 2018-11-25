@@ -10,19 +10,15 @@ public class OLS{
 	private int lines;
 
 	//Constructor
-	public OLS(){}
+	public OLS(int lines){
+		this.lines = lines;
+	}
 
 	public int getLines(){
 		return lines;
 	}
 
-	public List<String> getLine() throws Exception{
-		BufferedReader reader = new BufferedReader(new FileReader("D:\\Second desktop\\git\\models\\OompaLoompaSong.txt"));
-		String line;
-        List<String> list = new ArrayList<String>();
-        while ((line = reader.readLine()) != null) {
-            list.add(line);
-        }
-        return list;
+	public void setLines(int lines){
+		this.lines = lines;
 	}
 }

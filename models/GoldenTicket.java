@@ -1,18 +1,17 @@
 package models;
 
 //Import the Date package
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class GoldenTicket{
-	
-	//Attributes
-	private String code;
+public class GoldenTicket {
+    
+    private String code;
 	private Date raffled;
 	private SimpleDateFormat SimpRaffled = new SimpleDateFormat("yyyy/MM/dd");
     public boolean wasRaffled;
 
-    //Constructors
+        //Constructors
 	public GoldenTicket(){}
 
 	public GoldenTicket(String code, String raffled) throws Exception {
@@ -29,7 +28,7 @@ public class GoldenTicket{
     }
 
 	@Override
-    	public String toString(){
-    	    return "\nCode of this ticket: " + code + " It was raffled: " + raffled;
-    	}
+            public String toString(){
+                return "Code of this ticket: " + code + " It was raffled: " + raffled;
+            }
 }

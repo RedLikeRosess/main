@@ -15,5 +15,5 @@ public class TicketsBase{
         
     public ArrayList<GoldenTicket> getGoldenTickets(){
 		return this.gt;
-	}	
+	}
 }
