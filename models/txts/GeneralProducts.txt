@@ -1,0 +1,3 @@
+description: banana; barcode: 123; serialNumber: 1231; prizeTicket: null
+description: banana; barcode: 123; serialNumber: 1232; prizeTicket: null
+description: banana; barcode: 123; serialNumber: 1233; prizeTicket: null

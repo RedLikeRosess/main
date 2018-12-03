@@ -9,39 +9,38 @@ public class Main{
 		Scanner sc = new Scanner(System.in);
 		do{
 			System.out.println("Select from list: \n 1 - Register prize ticket \n 2 - Show all prize tickets" +  
-				"\n 3 - list raffled tickets \n 4 - Create a new Oompa Loompa song" + 
+				"\n 3 - List raffled tickets \n 4 - Create a new Oompa Loompa song" + 
 				"\n 5 - Register beings \n 6 - Register products \n 7 - Raffle tickets" +
-				"\n 8 - Register sale \n 9 - List winners \n 0 - exit");
+				"\n 8 - Register sale \n 9 - List winners \n 0 - Exit");
 			option = sc.nextInt();			
 			try{
 				switch(option){
 					case 1:
-                        c.addTicket();
+                        c.addTicket();	//ready
                         break;					
 					case 2:
-                        c.listGoldenTickets();
+                        c.listGoldenTickets();	//ready
                         break;
 					case 3:
-                        //c.listRaffledTickets();
+                        c.listRaffledTickets();	//ready
                         break;
                     case 4:
-						c.getSong();
+						c.getSong();	//ready
                     	break;
                     case 5:
-                    	c.createBeing();
+                    	c.createBeing();	//ready
                     	break;
                     case 6:
-                    	c.getKids();
-                    	//c.createProduct();
+                    	c.createProduct();	//ready
                     	break;
                     case 7:
-                    	//c.raffleTickets();
+                    	c.ruffleTickets();	// ready
                     	break;
                     case 8:
-                    	//c.createSale();
+                    	c.createSale();	//ready
                     	break;
                     case 9:
-                    	//c.listWinners();
+                    	c.listWinners();	//ready
                     	break;				
 					case 0:				
                         break;
@@ -49,7 +48,7 @@ public class Main{
 						System.out.println("Wrong option!!!");
 				}
 			}catch(Exception ex){
-				System.out.println("Something is wrong");
+				System.out.println("Something is wrong");				
 			}
 		}while(option != 0);		
 	}

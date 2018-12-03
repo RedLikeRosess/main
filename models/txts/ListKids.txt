@@ -1,0 +1,3 @@
+code: 111; name: Alex;
+place: Kursk; date: Wed Feb 02 00:00:00 CET 2000;
+products: [description: banana; barcode: 123; serialNumber: 1231; prizeTicket: Code of this ticket: 222 It was raffled: Wed Feb 02 00:00:00 CET 2005]

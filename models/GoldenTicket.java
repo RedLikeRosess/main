@@ -9,7 +9,6 @@ public class GoldenTicket {
     private String code;
 	private Date raffled;
 	private SimpleDateFormat SimpRaffled = new SimpleDateFormat("yyyy/MM/dd");
-    public boolean wasRaffled;
 
         //Constructors
 	public GoldenTicket(){}
@@ -18,14 +17,22 @@ public class GoldenTicket {
 		this.code = code;
 		this.raffled = SimpRaffled.parse(raffled);
 	}
-        
-    public void setIsRaffled(boolean WR){
-        this.wasRaffled = WR;
-    }
-    
-    public boolean isRaffled(){
-        return wasRaffled;
-    }
+
+	public String getCode(){
+		return code;
+	}
+
+	public void setCode(String code){
+		this.code = code;
+	}
+
+	public Date getRaffled(){
+		return raffled;
+	}
+
+	public void setRaffled(Date raffled){
+		this.raffled = raffled;
+	}
 
 	@Override
             public String toString(){

@@ -28,6 +28,6 @@ public class OompaLoompa extends Creature{
 
 	@Override
 	public String toString(){
-		return "code " + code + " name " + name + " height " + height + " favorite food " + favoriteFood;		
+		return "code: " + code + "; name: " + name + "; height: " + height + "; favorite food: " + favoriteFood;		
 	}
 }
