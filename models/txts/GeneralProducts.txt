@@ -1,3 +1,2 @@
-description: banana; barcode: 123; serialNumber: 1231; prizeTicket: null
 description: banana; barcode: 123; serialNumber: 1232; prizeTicket: null
-description: banana; barcode: 123; serialNumber: 1233; prizeTicket: null
+description: banana; barcode: 123; serialNumber: 1233; prizeTicket: Code of this ticket: 222 It was raffled: Wed Feb 02 00:00:00 CET 2005

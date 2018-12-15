@@ -48,7 +48,7 @@ public class Main{
 						System.out.println("Wrong option!!!");
 				}
 			}catch(Exception ex){
-				System.out.println("Something is wrong");				
+				System.out.println("Wrong number!!!");				
 			}
 		}while(option != 0);		
 	}

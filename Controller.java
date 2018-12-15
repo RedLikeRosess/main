@@ -32,51 +32,71 @@ public class Controller{
     ArrayList<GoldenTicket> allTickets;
 
     public Controller() throws Exception {
-            ticketsBase = new TicketsBase();
-            allTickets = new ArrayList<>();
-            startTicketsBase();
-            products = new ArrayList<>();
-            startProducts();
-            kids = new ArrayList<>();
-            startKids();
-            oompaLoompas = new ArrayList<>(); 
-            codesOfBeings = new ArrayList<>();
-            raffledTickets = new ArrayList<>();
-            winners = new ArrayList<>();
+        ticketsBase = new TicketsBase();
+        allTickets = new ArrayList<>();
+        startTicketsBase();
+        products = new ArrayList<>();
+        startProducts();
+        kids = new ArrayList<>();
+        startKids();
+        oompaLoompas = new ArrayList<>(); 
+        codesOfBeings = new ArrayList<>();
+        raffledTickets = new ArrayList<>();
+        winners = new ArrayList<>();
     }
     
     private void startTicketsBase() throws Exception{
-        ticketsBase.addTicket(new GoldenTicket("111", "2000/02/02"));
-        ticketsBase.addTicket(new GoldenTicket("222", "2005/02/02"));
-        ticketsBase.addTicket(new GoldenTicket("333", "2010/02/02"));
-
+        try{
+            ticketsBase.addTicket(new GoldenTicket("111", "2000/02/02"));
+            ticketsBase.addTicket(new GoldenTicket("222", "2005/02/02"));
+            ticketsBase.addTicket(new GoldenTicket("333", "2010/02/02"));
+        }catch(Exception ex){
+            System.out.println("Adding tickets error!!!");
+        }
+        
         ArrayList <GoldenTicket> goldenTickets = ticketsBase.getGoldenTickets();
         for(GoldenTicket goldT : goldenTickets){
             allTickets.add(goldT);
             ticketsString = ticketsString + goldT + "\n";
         }
 
-        String pathToFile = "D:\\Second desktop\\git\\models\\txts\\ListOfGoldenTickets.txt";
-        ReadWriteFile.writeFile(pathToFile, ticketsString);
+        try{
+            String pathToFile = "D:\\Second desktop\\git\\models\\txts\\ListOfGoldenTickets.txt";
+            ReadWriteFile.writeFile(pathToFile, ticketsString);
+        }catch(Exception ex){
+            System.out.println("Can't write to the file");
+        }
     }
 
     private void startProducts() throws Exception{
-        products.add(new Product("banana", 123L, "1231"));
-        products.add(new Product("banana", 123L, "1232"));
-        products.add(new Product("banana", 123L, "1233"));
+        try{
+            products.add(new Product("banana", 123L, "1231"));
+            products.add(new Product("banana", 123L, "1232"));
+            products.add(new Product("banana", 123L, "1233"));
+        }catch(Exception ex){
+            System.out.println("Adding products error!!!");
+        }
 
         for(Product prod : products){
             productString = productString + prod + "\n";
         }
 
-        String pathToFile = "D:\\Second desktop\\git\\models\\txts\\GeneralProducts.txt";
-        ReadWriteFile.writeFile(pathToFile, productString);
+        try{
+            String pathToFile = "D:\\Second desktop\\git\\models\\txts\\GeneralProducts.txt";
+            ReadWriteFile.writeFile(pathToFile, productString);
+        }catch(Exception ex){
+            System.out.println("Can't write to the file");
+        }
     }
 
     private void startKids() throws Exception{
-        kids.add(new Kid(111, "Alex", "2000/02/02", "Kursk"));
-        kids.add(new Kid(222, "Peter", "1990/02/02", "London"));
-        kids.add(new Kid(333, "Nick", "1995/02/02", "Paris"));
+        try{
+            kids.add(new Kid(111, "Alex", "2000/02/02", "Kursk"));
+            kids.add(new Kid(222, "Peter", "1990/02/02", "London"));
+            kids.add(new Kid(333, "Nick", "1995/02/02", "Paris"));
+        }catch(Exception ex){
+            System.out.println("Adding kids error!!!");              
+        }
     }
 
     public void addTicket() throws Exception{
@@ -97,12 +117,21 @@ public class Controller{
         System.out.println("Write the ticket's raffled date");
         String raffled = sc.next();
 
-        GoldenTicket gt = new GoldenTicket(code, raffled);
-        ticketsBase.addTicket(gt);
+        try{
+            GoldenTicket gt = new GoldenTicket(code, raffled);
+            ticketsBase.addTicket(gt);
+            allTickets.add(gt);
+            ticketsString = ticketsString + gt + "\n";
+        }catch(Exception ex){
+            System.out.println("Golden Ticket alarm");
+        }
 
-        ticketsString = ticketsString + gt + "\n";            
-        String pathToFile = "D:\\Second desktop\\git\\models\\txts\\ListOfGoldenTickets.txt";
-        ReadWriteFile.writeFile(pathToFile, ticketsString);
+        try{
+            String pathToFile = "D:\\Second desktop\\git\\models\\txts\\ListOfGoldenTickets.txt";
+            ReadWriteFile.writeFile(pathToFile, ticketsString);
+        }catch(Exception ex){
+            System.out.println("Can't write to the file");
+        }
     }
         
     public void listGoldenTickets(){
@@ -118,13 +147,17 @@ public class Controller{
         String pathToFile = "D:\\Second desktop\\git\\models\\txts\\OompaLoompaSong.txt";
         String pathForFile = "D:\\Second desktop\\git\\models\\txts\\GeneratedSong.txt";
         String song = ""; 
-        for (int i = 0; i < olSong.getLines(); i++){
-            Random rand = new Random();
-            int randLine = rand.nextInt(ReadWriteFile.readFile(pathToFile).size());
-            System.out.println(ReadWriteFile.readFile(pathToFile).get(randLine));
-            song = song + ReadWriteFile.readFile(pathToFile).get(randLine) + "\n";
+        try{
+            for (int i = 0; i < olSong.getLines(); i++){
+                Random rand = new Random();
+                int randLine = rand.nextInt(ReadWriteFile.readFile(pathToFile).size());
+                System.out.println(ReadWriteFile.readFile(pathToFile).get(randLine));
+                song = song + ReadWriteFile.readFile(pathToFile).get(randLine) + "\n";
+            }
+            ReadWriteFile.writeFile(pathForFile, song);
+        }catch(Exception ex){
+            System.out.println("Can't create a song");
         }
-        ReadWriteFile.writeFile(pathForFile, song);
     }
 
     public void createBeing(){
@@ -157,11 +190,7 @@ public class Controller{
                     System.out.println("Write a place of birth");
                     String placeOfBirth = sc.next();
                     Kid kid = new Kid(codeK, nameK, birthday, placeOfBirth);
-                    kids.add(kid);
-                    
-                    /*listOfKids = listOfKids + kid + "\n";                        
-                    pathToFile = "D:\\Second desktop\\git\\models\\txts\\ListKids.txt";
-                    rwf.writeFile(pathToFile, listOfKids); */                   
+                    kids.add(kid);                  
                     break;                  
                 case 2:
                     int codeO = 0;
@@ -222,9 +251,13 @@ public class Controller{
         Product prod = new Product(description, barcode, serialNumber);
         products.add(prod);
 
-        productString = productString + prod + "\n";            
-        String pathToFile = "D:\\Second desktop\\git\\models\\txts\\GeneralProducts.txt";
-        ReadWriteFile.writeFile(pathToFile, productString);
+        productString = productString + prod + "\n";  
+        try{
+            String pathToFile = "D:\\Second desktop\\git\\models\\txts\\GeneralProducts.txt";
+            ReadWriteFile.writeFile(pathToFile, productString);
+        }catch(Exception ex){
+            System.out.println("Can't write new product to the file");
+        }
     }
 
     public void createSale() throws Exception{
@@ -281,8 +314,13 @@ public class Controller{
         for(Product prod : products){
             productString = productString + prod + "\n";
         }
-        String pathToFile = "D:\\Second desktop\\git\\models\\txts\\GeneralProducts.txt";
-        ReadWriteFile.writeFile(pathToFile, productString);
+
+        try{
+            String pathToFile = "D:\\Second desktop\\git\\models\\txts\\GeneralProducts.txt";
+            ReadWriteFile.writeFile(pathToFile, productString);
+        }catch(Exception ex){
+            System.out.println("Can't change product file");
+        }
     }
 
     public void ruffleTickets() throws Exception{
@@ -291,6 +329,10 @@ public class Controller{
         System.out.println("Write a number of tickets for raffle");
         int number = sc.nextInt();
         sc.nextLine();
+        if (number > products.size()){
+            System.out.println("You don't have enough products, I'm gouing to ruffle only " +  products.size() + " tickets");
+            number = products.size();
+        }
         if(number <= ticketsBase.getGoldenTickets().size()){
             for(int i = 0; i < number; i++){
                 do{
@@ -302,11 +344,16 @@ public class Controller{
                     } else { check = 0; }
                 } while(check == 0);
                 products.get(randProd).setPrizeTicket(ticketsBase.getGoldenTickets().get(0));
+                ticketsBase.getGoldenTickets().get(0).setCheck(true);
                 productString = "";
                 for(int j = 0; j < products.size(); j++){
                     productString = productString + products.get(j) + "\n";            
-                    String pathToFile = "D:\\Second desktop\\git\\models\\txts\\GeneralProducts.txt";
-                    ReadWriteFile.writeFile(pathToFile, productString);
+                    try{
+                        String pathToFile = "D:\\Second desktop\\git\\models\\txts\\GeneralProducts.txt";
+                        ReadWriteFile.writeFile(pathToFile, productString);
+                    }catch(Exception ex){
+                        System.out.println("Can't ruffle tickets to product file");
+                    }
                 }
 
                 raffledTickets.add(ticketsBase.getGoldenTickets().get(0));
@@ -316,8 +363,12 @@ public class Controller{
     }
 
     public void listRaffledTickets(){
-        for(int i = 0; i < raffledTickets.size(); i++){
-            System.out.println(raffledTickets.get(i));
+        if (raffledTickets.size() == 0){
+            System.out.println("No ruffled tickets");
+        }else{
+            for(int i = 0; i < raffledTickets.size(); i++){
+                System.out.println(raffledTickets.get(i));
+            }
         }
     }
 
@@ -326,8 +377,12 @@ public class Controller{
             System.out.println("Name: " + winners.get(i).getName());
             listOfKids = listOfKids + winners.get(i) + "\n";
             
-            String pathToFile = "D:\\Second desktop\\git\\models\\txts\\ListKids.txt";
-            ReadWriteFile.writeFile(pathToFile, listOfKids);
+            try{
+                String pathToFile = "D:\\Second desktop\\git\\models\\txts\\ListKids.txt";
+                ReadWriteFile.writeFile(pathToFile, listOfKids);
+            }catch(Exception ex){
+                System.out.println("Can't change product file");
+            }
         }
     }
 }

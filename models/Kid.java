@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 public class Kid extends Creature{
 	private Date birthday;
-	private SimpleDateFormat SimpBirthday = new SimpleDateFormat("yyyy/MM/dd");
+	private SimpleDateFormat simpBirthday = new SimpleDateFormat("yyyy/MM/dd");
 	protected ArrayList<Product> listOfProducts;
 	private String placeOfBirth;
 
 	public Kid(int code, String name, String birthday, String placeOfBirth)throws Exception{
 		super(code, name);
 		this.placeOfBirth = placeOfBirth;
-		this.birthday = SimpBirthday.parse(birthday);
+		this.birthday = simpBirthday.parse(birthday);
 		listOfProducts = new ArrayList<Product>();
 	}
 

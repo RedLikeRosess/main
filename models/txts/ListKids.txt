@@ -1,3 +1,6 @@
+code: 123; name: Max;
+place: Paris; date: Tue Oct 21 00:00:00 CEST 1997;
+products: [description: banana; barcode: 123; serialNumber: 1231; prizeTicket: Code of this ticket: 111 It was raffled: Wed Feb 02 00:00:00 CET 2000]
 code: 111; name: Alex;
 place: Kursk; date: Wed Feb 02 00:00:00 CET 2000;
-products: [description: banana; barcode: 123; serialNumber: 1231; prizeTicket: Code of this ticket: 222 It was raffled: Wed Feb 02 00:00:00 CET 2005]
+products: [description: chocolate; barcode: 111; serialNumber: 1111; prizeTicket: Code of this ticket: 333 It was raffled: Tue Feb 02 00:00:00 CET 2010]
