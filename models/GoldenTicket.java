@@ -44,6 +44,6 @@ public class GoldenTicket {
 
 	@Override
             public String toString(){
-                return "Code of this ticket: " + code + " It was raffled: " + raffled;
+                return "Code of this ticket: " + code + " It was raffled: " + SimpRaffled.format(raffled);
             }
 }

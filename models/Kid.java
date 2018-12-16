@@ -43,6 +43,6 @@ public class Kid extends Creature{
 
 	@Override
 	public String toString(){
-		return "code: " + code + "; name: " + name + ";\nplace: " + placeOfBirth + "; date: " + birthday + ";\nproducts: " + listOfProducts;		
+		return "code: " + code + "; name: " + name + ";\nplace: " + placeOfBirth + "; date: " + simpBirthday.format(birthday) + ";\nproducts: " + listOfProducts;		
 	}
 }
